@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institución Educativa San Juan Bautista El Retiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#fbbf24',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .gradient-bg { 
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        }
+        .section-title {
+            position: relative;
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        .section-title p {
+            font-size: 1.1rem;
+            color: #1f2937;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3a8a 0%, #fbbf24 50%, #1e3a8a 100%);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .hero-overlay {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.7));
+        }
+        .facility-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.1), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+            border-color: #1e3a8a;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fbbf24;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .input-field {
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+        .section-container {
+            position: relative;
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .section-container:nth-child(even)::before {
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.05) 0%, transparent 100%);
+        }
+        .icon-primary {
+            color: #1e3a8a;
+        }
+        .icon-secondary {
+            color: #fbbf24;
+        }
+        .icon-white {
+            color: #ffffff;
+        }
+        .card-container {
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .card-container:hover {
+            border-color: #1e3a8a;
+            box-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.1), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-lg z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary">I.E. San Juan Bautista</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="nav-link text-primary hover:text-secondary">Inicio</a>
+                    <a href="#historia" class="nav-link text-primary hover:text-secondary">Historia</a>
+                    <a href="#instalaciones" class="nav-link text-primary hover:text-secondary">Instalaciones</a>
+                    <a href="#profesores" class="nav-link text-primary hover:text-secondary">Profesores</a>
+                    <a href="#grados" class="nav-link text-primary hover:text-secondary">Grados</a>
+                    <a href="#matricula" class="nav-link text-primary hover:text-secondary">Matrícula</a>
+                    <a href="#contacto" class="nav-link text-primary hover:text-secondary">Contacto</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative h-screen">
+        <div class="absolute inset-0 bg-[url('https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative container mx-auto px-6 h-full flex items-center">
+            <div class="text-white max-w-3xl">
+                <h1 class="text-5xl font-bold mb-6">Institución Educativa San Juan Bautista El Retiro</h1>
+                <p class="text-xl mb-8">Formando líderes del mañana con excelencia académica y valores humanos</p>
+                <a href="#contacto" class="bg-secondary text-primary font-bold px-8 py-4 rounded-lg hover:bg-yellow-400 transition duration-300 transform hover:-translate-y-1">
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia Section -->
+    <section id="historia" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Nuestra Historia</h2>
+                <p>Descubre nuestra trayectoria de excelencia y compromiso con la educación integral</p>
+            </div>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-gray-600 mb-12 leading-relaxed">
+                    La Institución Educativa San Juan Bautista El Retiro fue fundada con la visión de proporcionar una educación integral de calidad. Desde nuestros inicios, nos hemos dedicado a formar estudiantes con excelencia académica y valores sólidos.
+                </p>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="card-container p-6 bg-white">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-book-reader text-2xl icon-white"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-primary">Misión</h3>
+                        <p class="text-gray-600">Formar estudiantes íntegros con excelencia académica y valores humanos.</p>
+                    </div>
+                    <div class="card-container p-6 bg-white">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-eye text-2xl icon-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-primary">Visión</h3>
+                        <p class="text-gray-600">Ser referentes en educación integral y formación de líderes para el futuro.</p>
+                    </div>
+                    <div class="card-container p-6 bg-white">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-heart text-2xl icon-secondary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4 text-primary">Valores</h3>
+                        <p class="text-gray-600">Respeto, responsabilidad, excelencia y compromiso social.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instalaciones Section -->
+    <section id="instalaciones" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Nuestras Instalaciones</h2>
+                <p>Espacios modernos y equipados para un aprendizaje integral y desarrollo completo</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/289737/pexels-photo-289737.jpeg" alt="Biblioteca" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-book text-2xl icon-primary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Biblioteca</h3>
+                        </div>
+                        <p class="text-gray-600">Espacio moderno para el estudio y la investigación.</p>
+                    </div>
+                </div>
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/373488/pexels-photo-373488.jpeg" alt="Laboratorio" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-flask text-2xl icon-secondary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Laboratorio</h3>
+                        </div>
+                        <p class="text-gray-600">Equipamiento de última generación para prácticas científicas.</p>
+                    </div>
+                </div>
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg" alt="Campos Deportivos" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-futbol text-2xl icon-primary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Campos Deportivos</h3>
+                        </div>
+                        <p class="text-gray-600">Canchas de fútbol y voleibol para actividades deportivas.</p>
+                    </div>
+                </div>
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg" alt="Cafetería" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-utensils text-2xl icon-secondary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Cafetería y Restaurante</h3>
+                        </div>
+                        <p class="text-gray-600">Espacios de alimentación cómodos y saludables.</p>
+                    </div>
+                </div>
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg" alt="Sala de Informática" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-laptop text-2xl icon-primary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Sala de Informática</h3>
+                        </div>
+                        <p class="text-gray-600">Laboratorio de computación con tecnología moderna.</p>
+                    </div>
+                </div>
+                <div class="facility-card rounded-xl overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg" alt="Coordinación" class="w-full h-48 object-cover transform transition duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-building text-2xl icon-secondary mr-3"></i>
+                            <h3 class="text-xl font-semibold text-primary">Coordinación</h3>
+                        </div>
+                        <p class="text-gray-600">Oficinas administrativas y de atención.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profesores Section -->
+    <section id="profesores" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Nuestros Profesores</h2>
+                <p>Educadores comprometidos con la excelencia y el desarrollo integral de nuestros estudiantes</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="card-container p-8 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <img src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg" alt="Profesor" class="w-full h-full rounded-full object-cover border-4 border-secondary">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-primary">Prof. María González</h3>
+                    <p class="text-gray-600">Matemáticas</p>
+                </div>
+                <div class="card-container p-8 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <img src="https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg" alt="Profesor" class="w-full h-full rounded-full object-cover border-4 border-secondary">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-primary">Prof. Carlos Rodríguez</h3>
+                    <p class="text-gray-600">Ciencias</p>
+                </div>
+                <div class="card-container p-8 text-center">
+                    <div class="relative w-40 h-40 mx-auto mb-6">
+                        <img src="https://images.pexels.com/photos/5212339/pexels-photo-5212339.jpeg" alt="Profesor" class="w-full h-full rounded-full object-cover border-4 border-secondary">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-primary">Prof. Ana Martínez</h3>
+                    <p class="text-gray-600">Literatura</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grados Section -->
+    <section id="grados" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Niveles Educativos</h2>
+                <p>Formación académica integral adaptada a cada etapa del desarrollo estudiantil</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="card-container p-8">
+                    <div class="w-16 h-16 mb-6 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-child text-2xl icon-secondary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">Primaria</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                            <span>1° a 6° grado</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>Educación integral y personalizada</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                            <span>Desarrollo de habilidades básicas</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-container p-8">
+                    <div class="w-16 h-16 mb-6 bg-secondary rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-2xl icon-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">Secundaria</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>1° a 5° año</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                            <span>Preparación pre-universitaria</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>Formación técnica y científica</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matrícula Section -->
+    <section id="matricula" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Proceso de Matrícula</h2>
+                <p>Inicia el camino hacia una educación de excelencia para tu hijo</p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <form class="card-container p-8 space-y-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="nombre">Nombre del Estudiante</label>
+                        <input type="text" id="nombre" class="input-field w-full px-4 py-2 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="fecha">Fecha de Nacimiento</label>
+                        <input type="date" id="fecha" class="input-field w-full px-4 py-2 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="grado">Grado a Postular</label>
+                        <select id="grado" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            <option value="">Seleccione un grado</option>
+                            <option value="1p">1° Primaria</option>
+                            <option value="2p">2° Primaria</option>
+                            <option value="3p">3° Primaria</option>
+                            <option value="4p">4° Primaria</option>
+                            <option value="5p">5° Primaria</option>
+                            <option value="6p">6° Primaria</option>
+                            <option value="1s">1° Secundaria</option>
+                            <option value="2s">2° Secundaria</option>
+                            <option value="3s">3° Secundaria</option>
+                            <option value="4s">4° Secundaria</option>
+                            <option value="5s">5° Secundaria</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="padre">Nombre del Padre/Apoderado</label>
+                        <input type="text" id="padre" class="input-field w-full px-4 py-2 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="email">Correo Electrónico</label>
+                        <input type="email" id="email" class="input-field w-full px-4 py-2 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" class="input-field w-full px-4 py-2 rounded-lg" required>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transform transition hover:-translate-y-1">
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section-container">
+        <div class="container mx-auto px-6">
+            <div class="section-title">
+                <h2>Contáctanos</h2>
+                <p>Estamos aquí para responder tus dudas y brindarte la información que necesitas</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="card-container p-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">Información de Contacto</h3>
+                    <div class="space-y-6">
+                        <p class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-secondary text-xl mr-4"></i>
+                            <span>Av. Principal 123, El Retiro</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone text-primary text-xl mr-4"></i>
+                            <span>+51 123 456 789</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope text-secondary text-xl mr-4"></i>
+                            <span>contacto@sanjuanbautista.edu.pe</span>
+                        </p>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-semibold mb-4 text-primary">Síguenos en:</h4>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-primary hover:text-secondary transition-colors">
+                                <i class="fab fa-facebook text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-secondary hover:text-primary transition-colors">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-primary hover:text-secondary transition-colors">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container p-8">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="nombre-contacto">Nombre</label>
+                            <input type="text" id="nombre-contacto" class="input-field w-full px-4 py-2 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="email-contacto">Correo Electrónico</label>
+                            <input type="email" id="email-contacto" class="input-field w-full px-4 py-2 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" rows="4" class="input-field w-full px-4 py-2 rounded-lg" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transform transition hover:-translate-y-1">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">I.E. San Juan Bautista</h3>
+                    <p class="text-gray-300">Formando líderes del mañana con excelencia académica y valores humanos.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-300 hover:text-secondary transition-colors">Inicio</a></li>
+                        <li><a href="#historia" class="text-gray-300 hover:text-secondary transition-colors">Historia</a></li>
+                        <li><a href="#instalaciones" class="text-gray-300 hover:text-secondary transition-colors">Instalaciones</a></li>
+                        <li><a href="#matricula" class="text-gray-300 hover:text-secondary transition-colors">Matrícula</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Horario de Atención</h3>
+                    <p class="text-gray-300">Lunes a Viernes</p>
+                    <p class="text-gray-300">8:00 AM - 4:00 PM</p>
+                    <p class="mt-4 text-gray-300">Sábados</p>
+                    <p class="text-gray-300">8:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center">
+                <p class="text-gray-400">&copy; 2025 I.E. San Juan Bautista. Todos los derechos reservados.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="https://facebook.com" class="text-gray-300 hover:text-secondary transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" class="text-gray-300 hover:text-secondary transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" class="text-gray-300 hover:text-secondary transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
